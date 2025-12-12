@@ -4,7 +4,7 @@ import { ArrowDown } from 'lucide-react';
 const Hero: React.FC = () => {
   const [text, setText] = useState('');
   const fullText = 'Combino la lógica del código con el arte de la comunicación para crear experiencias web impactantes, accesibles y centradas en el usuario.';
-  
+
   useEffect(() => {
     let index = 0;
     const timer = setInterval(() => {
@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
         clearInterval(timer);
       }
     }, 30);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -23,25 +23,25 @@ const Hero: React.FC = () => {
     <section id="inicio" className="relative h-screen flex items-center justify-center px-4 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <img
           src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?q=80&w=1740&auto=format&fit=crop"
-          alt="Workspace background" 
+          alt="Workspace background"
           className="w-full h-full object-cover"
         />
         {/* Gradient Overlay for better text readability */}
-        <div className="absolute inset-0 bg-white/85 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-white/85 dark:bg-slate-950/85 backdrop-blur-sm transition-colors duration-300"></div>
       </div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in">
-          <span className="text-slate-900">Full-Stack Developer</span>
+          <span className="text-slate-900 dark:text-white transition-colors duration-300">Full-Stack Developer</span>
           <br className="hidden md:block" />
           <span className="text-accent animate-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto]">
             & Periodista
           </span>
         </h1>
-        
-        <p className="text-xl md:text-2xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed min-h-[120px] animate-fade-in-delay">
+
+        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed min-h-[120px] animate-fade-in-delay transition-colors duration-300">
           {text}
           <span className="animate-blink">|</span>
         </p>
