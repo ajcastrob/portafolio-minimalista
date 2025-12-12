@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
+import Journalism from './components/Journalism';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <main className="flex-grow">
         <Hero />
         <Projects />
+        <Journalism />
       </main>
       <Footer />
     </div>

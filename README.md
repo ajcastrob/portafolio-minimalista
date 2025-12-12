@@ -35,6 +35,7 @@ El proyecto ya está configurado con GitHub Actions para despliegue automático.
 **Pasos:**
 
 1. **Sube el proyecto a GitHub:**
+
    ```bash
    git init
    git add .
@@ -45,6 +46,7 @@ El proyecto ya está configurado con GitHub Actions para despliegue automático.
    ```
 
 2. **Activa GitHub Pages en tu repositorio:**
+
    - Ve a: `Settings` > `Pages`
    - En **Source**, selecciona: `GitHub Actions`
 
@@ -67,6 +69,7 @@ npm run deploy
 Esto construirá el proyecto y lo publicará en la rama `gh-pages`.
 
 **Luego activa GitHub Pages:**
+
 - Ve a: `Settings` > `Pages`
 - En **Source**, selecciona: `Deploy from a branch`
 - En **Branch**, selecciona: `gh-pages` y carpeta `/ (root)`
