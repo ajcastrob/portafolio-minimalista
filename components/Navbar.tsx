@@ -18,9 +18,13 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0 flex items-center">
             <a href="#inicio" className="flex items-center gap-3 group">
               <img 
-                src="/profile.jpg" 
+                src={`${import.meta.env.BASE_URL}profile.jpg`}
                 alt="José Castro" 
                 className="w-10 h-10 rounded-full object-cover border-2 border-slate-200 group-hover:border-accent transition-colors duration-200"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
               <span className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-accent transition-colors duration-200">
                 José Castro
