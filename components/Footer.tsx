@@ -1,22 +1,51 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Mail, Github, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <footer id="contacto" className="bg-white border-t border-slate-100 py-16 px-4 scroll-mt-16">
+    <footer ref={footerRef} id="contacto" className="bg-white border-t border-slate-100 py-16 px-4 scroll-mt-16">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6">¿Trabajamos juntos?</h2>
-        <p className="text-slate-600 mb-8 max-w-lg mx-auto">
+        <h2 className={`text-2xl font-bold text-slate-900 mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          ¿Trabajamos juntos?
+        </h2>
+        <p className={`text-slate-600 mb-8 max-w-lg mx-auto transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o oportunidades para ser parte de tus visiones.
         </p>
 
-        <div className="flex flex-col items-center space-y-4">
+        <div className={`flex flex-col items-center space-y-4 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <a 
             href="mailto:a.j.castro.b@gmail.com" 
-            className="flex items-center text-lg text-slate-900 hover:text-accent transition-colors font-medium"
+            className="flex items-center text-lg text-slate-900 hover:text-accent transition-all duration-300 font-medium group"
           >
-            <Mail className="w-5 h-5 mr-2" />
-            a.j.castro.b@gmail.com
+            <Mail className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+            <span className="relative">
+              a.j.castro.b@gmail.com
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+            </span>
           </a>
 
           <div className="flex space-x-6 mt-6">
@@ -25,7 +54,7 @@ const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="p-3 text-slate-400 hover:text-slate-900 transition-colors rounded-full hover:bg-slate-50 border border-transparent hover:border-slate-100"
+              className="p-3 text-slate-400 hover:text-slate-900 transition-all duration-300 rounded-full hover:bg-slate-50 border border-transparent hover:border-slate-100 transform hover:scale-110 hover:-translate-y-1"
             >
               <Github className="w-6 h-6" />
             </a>
@@ -34,14 +63,14 @@ const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="p-3 text-slate-400 hover:text-[#0077b5] transition-colors rounded-full hover:bg-blue-50 border border-transparent hover:border-blue-100"
+              className="p-3 text-slate-400 hover:text-[#0077b5] transition-all duration-300 rounded-full hover:bg-blue-50 border border-transparent hover:border-blue-100 transform hover:scale-110 hover:-translate-y-1"
             >
               <Linkedin className="w-6 h-6" />
             </a>
           </div>
         </div>
 
-        <div className="mt-16 text-sm text-slate-400">
+        <div className={`mt-16 text-sm text-slate-400 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           &copy; {new Date().getFullYear()} José Castro. Todos los derechos reservados.
         </div>
       </div>

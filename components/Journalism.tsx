@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Newspaper } from 'lucide-react';
 
 interface Article {
@@ -24,13 +24,39 @@ const articlesData: Article[] = [
 ];
 
 const Journalism: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="periodismo" className="py-24 bg-white px-4 scroll-mt-16">
+    <section ref={sectionRef} id="periodismo" className="py-24 bg-white px-4 scroll-mt-16">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Newspaper className="w-8 h-8 text-accent" />
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">Periodismo</h2>
+            <Newspaper className="w-8 h-8 text-accent animate-pulse" />
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-900 via-accent to-slate-900 bg-clip-text text-transparent animate-gradient-text bg-[length:200%_auto]">
+              Periodismo
+            </h2>
           </div>
           <p className="text-slate-600 max-w-2xl mx-auto">
             Historias que conectan, informan y transforman perspectivas.
@@ -38,25 +64,33 @@ const Journalism: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {articlesData.map((article) => (
-            <div key={article.id} className="bg-slate-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
-              <div className="relative overflow-hidden group h-56">
+          {articlesData.map((article, index) => (
+            <div 
+              key={article.id} 
+              className={`bg-slate-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
+            >
+              <div className="relative overflow-hidden h-56">
                 <img 
                   src={article.image} 
                   alt={article.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-sm font-medium text-accent">{article.publication}</span>
+                  <span className="text-sm font-medium text-accent animate-shimmer">{article.publication}</span>
                   <span className="text-slate-400">•</span>
                   <span className="text-sm text-slate-500">{article.date}</span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">{article.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-accent transition-colors duration-300">
+                  {article.title}
+                </h3>
                 <p className="text-slate-600 mb-6 text-base leading-relaxed flex-grow">
                   {article.description}
                 </p>
@@ -65,7 +99,7 @@ const Journalism: React.FC = () => {
                   href={article.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200 group-hover:shadow-sm"
+                  className="w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
                 >
                   <Newspaper className="mr-2 h-4 w-4" />
                   Leer Artículo
@@ -76,6 +110,28 @@ const Journalism: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes gradient-text {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .animate-gradient-text {
+          animation: gradient-text 4s ease infinite;
+        }
+        
+        @keyframes shimmer {
+          0% { opacity: 1; }
+          50% { opacity: 0.7; }
+          100% { opacity: 1; }
+        }
+        
+        .animate-shimmer {
+          animation: shimmer 2s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };

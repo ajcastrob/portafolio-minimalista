@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 
 interface Project {
@@ -30,37 +30,93 @@ const projectsData: Project[] = [
 ];
 
 const Projects: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section id="proyectos" className="py-24 bg-slate-50 px-4 scroll-mt-16">
+    <section ref={sectionRef} id="proyectos" className="py-24 bg-slate-50 px-4 scroll-mt-16">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Proyectos Destacados</h2>
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 animate-title">
+            <span className="inline-block hover:scale-110 transition-transform duration-300">P</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">r</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">o</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">y</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">e</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">c</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">t</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">o</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">s</span>
+            <span className="inline-block mx-2"></span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">D</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">e</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">s</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">t</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">a</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">c</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">a</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">d</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">o</span>
+            <span className="inline-block hover:scale-110 transition-transform duration-300">s</span>
+          </h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
             Soluciones tecnológicas aplicadas a finanzas y medios de comunicación, integrando Inteligencia Artificial.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {projectsData.map((project) => (
-            <div key={project.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col">
-              <div className="relative overflow-hidden group h-56">
+          {projectsData.map((project, index) => (
+            <div 
+              key={project.id} 
+              className={`bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
+            >
+              <div className="relative overflow-hidden h-56">
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               
               <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">{project.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-accent transition-colors duration-300">
+                  {project.title}
+                </h3>
                 <p className="text-slate-600 mb-6 text-base leading-relaxed flex-grow">
                   {project.description}
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-8">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full border border-slate-200">
+                    <span 
+                      key={tag} 
+                      className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full border border-slate-200 hover:border-accent hover:text-accent transition-all duration-300 cursor-default"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -70,7 +126,7 @@ const Projects: React.FC = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200 group-hover:shadow-sm"
+                  className="w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
                 >
                   <Github className="mr-2 h-4 w-4" />
                   Ver Repositorio
