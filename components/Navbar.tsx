@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 
 interface NavbarProps {
@@ -8,6 +8,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showProfile, setShowProfile] = useState(true);
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
@@ -17,18 +18,31 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
     { name: 'Contacto', href: '#contacto' },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      // Ocultar cuando el usuario haga scroll más de 150px
+      setShowProfile(scrollPosition < 150);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <nav className="fixed w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm z-50 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo / Name */}
-          <div className="flex-shrink-0 flex items-center">
+          {/* Logo / Name - Hide on scroll */}
+          <div className={`flex-shrink-0 flex items-center transition-all duration-500 ${
+            showProfile ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
+          }`}>
             <a href="#inicio" className="flex items-center gap-3 group">
               <div className="relative">
                 <img
                   src={`${import.meta.env.BASE_URL}profile.jpg`}
                   alt="José Castro"
-                  className="w-10 h-10 rounded-full object-cover border-2 border-slate-200 group-hover:border-accent transition-all duration-300 group-hover:scale-110"
+                  className="w-10 h-10 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700 group-hover:border-accent transition-all duration-300 group-hover:scale-110"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';

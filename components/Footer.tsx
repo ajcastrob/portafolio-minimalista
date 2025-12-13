@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className={`mt-16 text-sm text-slate-400 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          &copy; {new Date().getFullYear()} José Castro. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} José Castro
         </div>
       </div>
     </footer>
