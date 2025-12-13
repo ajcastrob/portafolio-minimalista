@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="inicio" className="relative h-screen flex items-center justify-center px-4 overflow-hidden">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -28,31 +28,32 @@ const Hero: React.FC = () => {
           alt="Workspace background"
           className="w-full h-full object-cover"
         />
-        {/* Gradient Overlay for better text readability */}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-white/85 dark:bg-slate-950/85 backdrop-blur-sm transition-colors duration-300"></div>
       </div>
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in">
-          <span className="text-slate-900 dark:text-white transition-colors duration-300">Full-Stack Developer</span>
-          <br className="hidden md:block" />
-          <span className="text-accent animate-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent bg-[length:200%_auto]">
+      <div className="max-w-4xl mx-auto text-center relative z-10 py-20">
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+          <span className="block text-slate-900 dark:text-white transition-colors duration-300">
+            Full-Stack Developer
+          </span>
+          <span className="block mt-2 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
             & Periodista
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed min-h-[120px] animate-fade-in-delay transition-colors duration-300">
+        <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed min-h-[120px] transition-colors duration-300">
           {text}
-          <span className="animate-blink">|</span>
+          {text.length > 0 && <span className="animate-blink">|</span>}
         </p>
 
-        <div className="flex justify-center animate-fade-in-delay-2">
+        <div className="flex justify-center">
           <a
             href="#proyectos"
-            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-accent hover:bg-accentHover transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
           >
             Ver Proyectos
-            <ArrowDown className="ml-2 h-5 w-5 animate-bounce" />
+            <ArrowDown className="ml-2 h-5 w-5" />
           </a>
         </div>
       </div>
@@ -75,31 +76,6 @@ const Hero: React.FC = () => {
         
         .animate-blink {
           animation: blink 1s infinite;
-        }
-        
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-        
-        .animate-fade-in-delay {
-          opacity: 0;
-          animation: fade-in 0.8s ease-out 0.3s forwards;
-        }
-        
-        .animate-fade-in-delay-2 {
-          opacity: 0;
-          animation: fade-in 0.8s ease-out 0.6s forwards;
         }
       `}</style>
     </section>

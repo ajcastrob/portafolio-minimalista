@@ -11,6 +11,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
 
   const navLinks = [
     { name: 'Inicio', href: '#inicio' },
+    { name: 'Sobre mí', href: '#sobre-mi' },
     { name: 'Proyectos', href: '#proyectos' },
     { name: 'Periodismo', href: '#periodismo' },
     { name: 'Contacto', href: '#contacto' },

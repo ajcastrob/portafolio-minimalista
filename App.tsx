@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import About from './components/About';
 import Projects from './components/Projects';
 import Journalism from './components/Journalism';
 import Footer from './components/Footer';
@@ -35,6 +36,7 @@ const App: React.FC = () => {
       <Navbar isDark={isDark} toggleTheme={toggleTheme} />
       <main className="flex-grow">
         <Hero />
+        <About />
         <Projects />
         <Journalism />
       </main>
