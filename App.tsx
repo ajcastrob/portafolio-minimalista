@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Journalism from './components/Journalism';
+import Blog from './components/Blog';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -39,6 +40,7 @@ const App: React.FC = () => {
         <About />
         <Projects />
         <Journalism />
+        <Blog />
       </main>
       <Footer />
     </div>

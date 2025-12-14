@@ -77,11 +77,11 @@ const About: React.FC = () => {
 
             <div className="space-y-6 text-slate-300 leading-relaxed">
               <p className="text-lg">
-                Me formé como periodista y como un <span className="text-white font-semibold">lector de ficción</span>, que ha sido mi mayor constante. Pero mi experiencia en medios digitales y escritura me ha llevado a descubrir la <span className="text-white font-semibold">tecnología como herramienta para contar más historias</span>.
+                Ante todo, soy un <span className="text-white font-semibold">un lector de libros</span>; la ficción, en especial, me parece fascinante. Fue gracias a mi experiencia en medios digitales y escritura que encontré mi camino hacia la tecnología.
               </p>
 
               <p className="text-lg">
-                Hoy, me dedico a <span className="text-white font-semibold">combinar soluciones eficientes con herramientas digitales</span>, siempre con el propósito de construir y dar vida a las historias que tanto me inspiran.
+                Hoy, me dedico a <span className="text-white font-semibold">combinar soluciones eficientes con herramientas digitales</span>, siempre con el propósito de construir y dar vida a historias de la manera más efectiva.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mt-10 pt-8 border-t border-white/10">
