@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden" role="banner" aria-label="Sección principal">
       {/* Constellation Effect */}
       <Constellation />
 

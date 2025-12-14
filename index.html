@@ -2,9 +2,80 @@
 <html lang="es" class="scroll-smooth">
 
 <head>
+  <!-- Meta Tags Básicos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>José Castro - Portafolio</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <!-- SEO Básico -->
+  <title>José Castro - Full-Stack Developer & Periodista | Portafolio</title>
+  <meta name="description" content="José Castro, Full-Stack Developer y Periodista especializado en crear experiencias web impactantes. Combino tecnología con storytelling para proyectos innovadores con Python, React, TypeScript e IA." />
+  <meta name="keywords" content="José Castro, Full-Stack Developer, Desarrollador Web, Periodista, Python, React, TypeScript, Inteligencia Artificial, Portafolio, Streamlit, Web Development, Periodismo Digital, Storytelling" />
+  <meta name="author" content="José Castro" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ajcastrob.github.io/portafolio-minimalista/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ajcastrob.github.io/portafolio-minimalista/" />
+  <meta property="og:title" content="José Castro - Full-Stack Developer & Periodista" />
+  <meta property="og:description" content="Portafolio profesional de José Castro. Desarrollador Full-Stack y Periodista especializado en crear experiencias web impactantes con Python, React e Inteligencia Artificial." />
+  <meta property="og:image" content="https://ajcastrob.github.io/portafolio-minimalista/profile.jpg" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="José Castro - Portafolio" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://ajcastrob.github.io/portafolio-minimalista/" />
+  <meta name="twitter:title" content="José Castro - Full-Stack Developer & Periodista" />
+  <meta name="twitter:description" content="Portafolio profesional de José Castro. Desarrollador Full-Stack y Periodista especializado en crear experiencias web impactantes." />
+  <meta name="twitter:image" content="https://ajcastrob.github.io/portafolio-minimalista/profile.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="msapplication-TileColor" content="#2563eb" />
+
+  <!-- Preconnect para Performance -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <link rel="preconnect" href="https://esm.sh" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "José Castro",
+    "url": "https://ajcastrob.github.io/portafolio-minimalista/",
+    "image": "https://ajcastrob.github.io/portafolio-minimalista/profile.jpg",
+    "jobTitle": "Full-Stack Developer & Periodista",
+    "description": "Desarrollador Full-Stack y Periodista especializado en crear experiencias web impactantes combinando tecnología con storytelling.",
+    "email": "a.j.castro.b@gmail.com",
+    "sameAs": [
+      "https://github.com/ajcastrob",
+      "https://www.linkedin.com/in/josé-castro-b600791a4/"
+    ],
+    "knowsAbout": [
+      "Python",
+      "React",
+      "TypeScript",
+      "Desarrollo Web",
+      "Inteligencia Artificial",
+      "Periodismo Digital",
+      "Storytelling"
+    ],
+    "alumniOf": {
+      "@type": "Organization",
+      "name": "Periodismo y Desarrollo Web"
+    }
+  }
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -12,8 +83,8 @@
       theme: {
         extend: {
           colors: {
-            accent: '#2563eb', // Blue-600
-            accentHover: '#1d4ed8', // Blue-700
+            accent: '#2563eb',
+            accentHover: '#1d4ed8',
           }
         }
       }

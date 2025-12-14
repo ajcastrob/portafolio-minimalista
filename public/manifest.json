@@ -1,0 +1,26 @@
+{
+  "name": "José Castro - Portafolio",
+  "short_name": "JCastro Portfolio",
+  "description": "Portafolio profesional de José Castro - Full-Stack Developer & Periodista",
+  "start_url": "/portafolio-minimalista/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/portafolio-minimalista/profile.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/portafolio-minimalista/profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "technology", "journalism"],
+  "lang": "es-ES"
+}
