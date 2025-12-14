@@ -77,7 +77,7 @@ const About: React.FC = () => {
 
             <div className="space-y-6 text-slate-300 leading-relaxed">
               <p className="text-lg">
-                Ante todo, soy un <span className="text-white font-semibold">apasionado de los libros</span>; la ficción es mi gran refugio. Fue gracias a mi experiencia en medios digitales y escritura que encontré mi camino hacia la tecnología.
+                Me formé como periodista y como un <span className="text-white font-semibold">lector de ficción</span>, que ha sido mi mayor constante. Pero mi experiencia en medios digitales y escritura me ha llevado a descubrir la <span className="text-white font-semibold">tecnología como herramienta para contar más historias</span>.
               </p>
 
               <p className="text-lg">
