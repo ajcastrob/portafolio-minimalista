@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Code } from 'lucide-react';
 
 interface Project {
   id: number;
@@ -58,28 +58,12 @@ const Projects: React.FC = () => {
     <section ref={sectionRef} id="proyectos" className="py-24 bg-slate-50 dark:bg-slate-950 px-4 scroll-mt-16 transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 animate-title transition-colors duration-300">
-            <span className="inline-block hover:scale-110 transition-transform duration-300">P</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">r</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">o</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">y</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">e</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">c</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">t</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">o</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">s</span>
-            <span className="inline-block mx-2"></span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">D</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">e</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">s</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">t</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">a</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">c</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">a</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">d</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">o</span>
-            <span className="inline-block hover:scale-110 transition-transform duration-300">s</span>
-          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Code className="w-8 h-8 text-accent animate-pulse" />
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-900 via-accent to-slate-900 dark:from-white dark:via-accent dark:to-white bg-clip-text text-transparent animate-gradient-text bg-[length:200%_auto] transition-colors duration-300">
+              Proyectos Destacados
+            </h2>
+          </div>
           <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto transition-colors duration-300">
             Soluciones tecnológicas aplicadas a finanzas y medios de comunicación, integrando Inteligencia Artificial.
           </p>
@@ -125,17 +109,44 @@ const Projects: React.FC = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
+                  className="group/btn relative w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white hover:border-slate-900 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 overflow-hidden"
                 >
-                  <Github className="mr-2 h-4 w-4" />
-                  Ver Repositorio
-                  <ExternalLink className="ml-2 h-4 w-4 opacity-50" />
+                  {/* Glow effect */}
+                  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 opacity-0 group-hover/btn:opacity-20 blur-lg transition-opacity duration-300"></span>
+                  <span className="absolute inset-0 rounded-xl border-2 border-slate-400/30 opacity-0 group-hover/btn:opacity-100 animate-button-glow"></span>
+                  
+                  <span className="relative z-10 flex items-center">
+                    <Github className="mr-2 h-4 w-4" />
+                    Ver Repositorio
+                    <ExternalLink className="ml-2 h-4 w-4 opacity-50" />
+                  </span>
                 </a>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @keyframes button-glow {
+          0%, 100% { box-shadow: 0 0 5px rgba(148, 163, 184, 0.3), 0 0 10px rgba(148, 163, 184, 0.2); }
+          50% { box-shadow: 0 0 15px rgba(148, 163, 184, 0.5), 0 0 25px rgba(148, 163, 184, 0.3); }
+        }
+
+        .animate-button-glow {
+          animation: button-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes gradient-text {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .animate-gradient-text {
+          animation: gradient-text 4s ease infinite;
+        }
+      `}</style>
     </section>
   );
 };

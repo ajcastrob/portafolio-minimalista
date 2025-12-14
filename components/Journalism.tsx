@@ -98,11 +98,17 @@ const Journalism: React.FC = () => {
                   href={article.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
+                  className="group/btn relative w-full inline-flex items-center justify-center px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-semibold text-slate-900 dark:text-white hover:bg-slate-900 hover:text-white hover:border-slate-900 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 overflow-hidden"
                 >
-                  <Newspaper className="mr-2 h-4 w-4" />
-                  Leer Artículo
-                  <ExternalLink className="ml-2 h-4 w-4 opacity-50" />
+                  {/* Glow effect */}
+                  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 opacity-0 group-hover/btn:opacity-20 blur-lg transition-opacity duration-300"></span>
+                  <span className="absolute inset-0 rounded-xl border-2 border-slate-400/30 opacity-0 group-hover/btn:opacity-100 animate-button-glow"></span>
+                  
+                  <span className="relative z-10 flex items-center">
+                    <Newspaper className="mr-2 h-4 w-4" />
+                    Leer Artículo
+                    <ExternalLink className="ml-2 h-4 w-4 opacity-50" />
+                  </span>
                 </a>
               </div>
             </div>
@@ -129,6 +135,15 @@ const Journalism: React.FC = () => {
         
         .animate-shimmer {
           animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes button-glow {
+          0%, 100% { box-shadow: 0 0 5px rgba(148, 163, 184, 0.3), 0 0 10px rgba(148, 163, 184, 0.2); }
+          50% { box-shadow: 0 0 15px rgba(148, 163, 184, 0.5), 0 0 25px rgba(148, 163, 184, 0.3); }
+        }
+
+        .animate-button-glow {
+          animation: button-glow 2s ease-in-out infinite;
         }
       `}</style>
     </section>

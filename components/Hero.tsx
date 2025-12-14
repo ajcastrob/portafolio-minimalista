@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
+import Constellation from './Constellation';
 
 const Hero: React.FC = () => {
   const [text, setText] = useState('');
@@ -21,6 +22,9 @@ const Hero: React.FC = () => {
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      {/* Constellation Effect */}
+      <Constellation />
+
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -50,10 +54,17 @@ const Hero: React.FC = () => {
         <div className="flex justify-center">
           <a
             href="#proyectos"
-            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
+            className="group relative inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg overflow-hidden"
           >
-            Ver Proyectos
-            <ArrowDown className="ml-2 h-5 w-5" />
+            {/* Glow effect */}
+            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 animate-glow"></span>
+            <span className="absolute inset-0 rounded-full border-2 border-blue-400 opacity-0 group-hover:opacity-100 animate-border-glow"></span>
+            
+            {/* Content */}
+            <span className="relative z-10 flex items-center">
+              Ver Proyectos
+              <ArrowDown className="ml-2 h-5 w-5" />
+            </span>
           </a>
         </div>
       </div>
@@ -76,6 +87,24 @@ const Hero: React.FC = () => {
         
         .animate-blink {
           animation: blink 1s infinite;
+        }
+
+        @keyframes glow {
+          0%, 100% { transform: scale(1); opacity: 0; }
+          50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .animate-glow {
+          animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes border-glow {
+          0%, 100% { box-shadow: 0 0 5px rgba(96, 165, 250, 0.5), 0 0 10px rgba(96, 165, 250, 0.3); }
+          50% { box-shadow: 0 0 15px rgba(96, 165, 250, 0.8), 0 0 30px rgba(96, 165, 250, 0.5); }
+        }
+
+        .animate-border-glow {
+          animation: border-glow 2s ease-in-out infinite;
         }
       `}</style>
     </section>
