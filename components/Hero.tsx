@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowDown } from 'lucide-react';
-import Constellation from './Constellation';
+import React, { useEffect, useState } from "react";
+import { ArrowDown } from "lucide-react";
+import Constellation from "./Constellation";
 
 const Hero: React.FC = () => {
-  const [text, setText] = useState('');
-  const fullText = 'Combino la lógica del código con el arte de la comunicación para crear experiencias web impactantes, accesibles y centradas en el usuario.';
+  const [text, setText] = useState("");
+  const fullText =
+    "Combino la lógica del código con el arte de la comunicación para crear experiencias web impactantes, accesibles y centradas en el usuario.";
 
   useEffect(() => {
     let index = 0;
@@ -21,7 +22,12 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden" role="banner" aria-label="Sección principal">
+    <section
+      id="inicio"
+      className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
+      role="banner"
+      aria-label="Sección principal"
+    >
       {/* Constellation Effect */}
       <Constellation />
 
@@ -59,7 +65,7 @@ const Hero: React.FC = () => {
             {/* Glow effect */}
             <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 animate-glow"></span>
             <span className="absolute inset-0 rounded-full border-2 border-blue-400 opacity-0 group-hover:opacity-100 animate-border-glow"></span>
-            
+
             {/* Content */}
             <span className="relative z-10 flex items-center">
               Ver Proyectos

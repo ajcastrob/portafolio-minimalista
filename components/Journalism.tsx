@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ExternalLink, Newspaper } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { ExternalLink, Newspaper } from "lucide-react";
 
 interface Article {
   id: number;
@@ -15,12 +15,14 @@ const articlesData: Article[] = [
   {
     id: 1,
     title: "Dijo que todo iba a estar bien",
-    description: "Un artículo que explora las complejidades de la esperanza y las promesas en tiempos difíciles.",
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop",
+    description:
+      "Un artículo que explora las complejidades de la esperanza y las promesas en tiempos difíciles.",
+    image:
+      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop",
     publication: "La Vida de Nos",
     date: "2024",
-    link: "https://www.lavidadenos.com/dijo-que-todo-iba-a-estar-bien"
-  }
+    link: "https://www.lavidadenos.com/dijo-que-todo-iba-a-estar-bien",
+  },
 ];
 
 const Journalism: React.FC = () => {
@@ -49,9 +51,17 @@ const Journalism: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="periodismo" className="py-24 bg-white dark:bg-slate-950 px-4 scroll-mt-16 transition-colors duration-300">
+    <section
+      ref={sectionRef}
+      id="periodismo"
+      className="py-24 bg-white dark:bg-slate-950 px-4 scroll-mt-16 transition-colors duration-300"
+    >
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
           <div className="flex items-center justify-center gap-3 mb-4">
             <Newspaper className="w-8 h-8 text-accent animate-pulse" />
             <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-slate-900 via-accent to-slate-900 dark:from-white dark:via-accent dark:to-white bg-clip-text text-transparent animate-gradient-text bg-[length:200%_auto]">
@@ -67,8 +77,11 @@ const Journalism: React.FC = () => {
           {articlesData.map((article, index) => (
             <div
               key={article.id}
-              className={`bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+              className={`bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="relative overflow-hidden h-56">
@@ -82,7 +95,9 @@ const Journalism: React.FC = () => {
 
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="text-sm font-medium text-accent animate-shimmer">{article.publication}</span>
+                  <span className="text-sm font-medium text-accent animate-shimmer">
+                    {article.publication}
+                  </span>
                   <span className="text-slate-400">•</span>
                   <span className="text-sm text-slate-500">{article.date}</span>
                 </div>
@@ -103,7 +118,7 @@ const Journalism: React.FC = () => {
                   {/* Glow effect */}
                   <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 opacity-0 group-hover/btn:opacity-20 blur-lg transition-opacity duration-300"></span>
                   <span className="absolute inset-0 rounded-xl border-2 border-slate-400/30 opacity-0 group-hover/btn:opacity-100 animate-button-glow"></span>
-                  
+
                   <span className="relative z-10 flex items-center">
                     <Newspaper className="mr-2 h-4 w-4" />
                     Leer Artículo

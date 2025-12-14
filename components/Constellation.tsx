@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 interface Particle {
   x: number;
@@ -17,7 +17,7 @@ const Constellation: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Set canvas size
@@ -26,7 +26,7 @@ const Constellation: React.FC = () => {
       canvas.height = window.innerHeight;
     };
     setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
+    window.addEventListener("resize", setCanvasSize);
 
     // Particle configuration
     const particleCount = 80;
@@ -51,7 +51,7 @@ const Constellation: React.FC = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     // Animation loop
     const animate = () => {
@@ -79,7 +79,9 @@ const Constellation: React.FC = () => {
         }
 
         // Limit velocity
-        const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+        const speed = Math.sqrt(
+          particle.vx * particle.vx + particle.vy * particle.vy
+        );
         if (speed > 2) {
           particle.vx = (particle.vx / speed) * 2;
           particle.vy = (particle.vy / speed) * 2;
@@ -88,7 +90,7 @@ const Constellation: React.FC = () => {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(37, 99, 235, 0.6)'; // Blue
+        ctx.fillStyle = "rgba(37, 99, 235, 0.6)"; // Blue
         ctx.fill();
 
         // Draw connections
@@ -117,8 +119,8 @@ const Constellation: React.FC = () => {
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', setCanvasSize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("resize", setCanvasSize);
+      window.removeEventListener("mousemove", handleMouseMove);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
