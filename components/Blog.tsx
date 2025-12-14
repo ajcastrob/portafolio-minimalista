@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, ArrowRight, X, ArrowLeft, BookOpen } from 'lucide-react';
+import Constellation from './Constellation';
 
 interface BlogPost {
   id: number;
@@ -164,8 +165,20 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <section id="blog" className="py-24 bg-white dark:bg-slate-900 px-4 scroll-mt-16 transition-colors duration-300 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="blog" className="py-24 bg-slate-900 dark:bg-slate-950 px-4 scroll-mt-16 transition-colors duration-300 relative overflow-hidden">
+      {/* Constellation Effect */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Constellation />
+      </div>
+
+      {/* Decorative gradient blobs */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl animate-float-delay"></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-indigo-500 rounded-full blur-3xl animate-float-slow"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
             <BookOpen className="w-8 h-8 text-accent animate-pulse" />
@@ -180,7 +193,7 @@ const Blog: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogPosts.map((post) => (
-            <article key={post.id} className="group flex flex-col h-full bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-accent/50 dark:hover:border-accent/50 transition-all duration-300 hover:shadow-xl">
+            <article key={post.id} className="group flex flex-col h-full bg-white/5 dark:bg-slate-800/30 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 dark:border-slate-700/50 hover:border-accent/50 dark:hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/20">
               {post.image && (
                 <div className="relative h-48 overflow-hidden">
                   <img 
@@ -193,7 +206,7 @@ const Blog: React.FC = () => {
               )}
               
               <div className="p-6 flex flex-col flex-grow">
-                <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-400 dark:text-slate-500 mb-3">
                   <span className="flex items-center">
                     <Calendar className="w-3 h-3 mr-1" />
                     {post.date}
@@ -207,11 +220,11 @@ const Blog: React.FC = () => {
                   </span>
                 </div>
                 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-accent transition-colors duration-300 cursor-pointer" onClick={() => openPost(post)}>
+                <h3 className="text-xl font-bold text-white dark:text-white mb-3 group-hover:text-accent transition-colors duration-300 cursor-pointer" onClick={() => openPost(post)}>
                   {post.title}
                 </h3>
                 
-                <p className="text-slate-600 dark:text-slate-300 mb-6 flex-grow leading-relaxed text-sm">
+                <p className="text-slate-300 dark:text-slate-400 mb-6 flex-grow leading-relaxed text-sm">
                   {post.excerpt}
                 </p>
                 
@@ -310,6 +323,26 @@ const Blog: React.FC = () => {
         
         .animate-gradient-text {
           animation: gradient-text 4s ease infinite;
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -30px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .animate-float {
+          animation: float 20s ease-in-out infinite;
+        }
+
+        .animate-float-delay {
+          animation: float 25s ease-in-out infinite;
+          animation-delay: -5s;
+        }
+
+        .animate-float-slow {
+          animation: float 30s ease-in-out infinite;
+          animation-delay: -10s;
         }
       `}</style>
     </section>
