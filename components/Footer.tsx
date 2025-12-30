@@ -33,22 +33,6 @@ const Footer: React.FC = () => {
       className="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 py-16 px-4 scroll-mt-16 transition-colors duration-300"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <h2
-          className={`text-2xl font-bold text-slate-900 dark:text-white mb-6 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          ¿Trabajamos juntos?
-        </h2>
-        <p
-          className={`text-slate-600 dark:text-slate-400 mb-8 max-w-lg mx-auto transition-all duration-1000 delay-100 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o
-          oportunidades para ser parte de tus visiones.
-        </p>
-
         <div
           className={`flex flex-col items-center space-y-4 transition-all duration-1000 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
