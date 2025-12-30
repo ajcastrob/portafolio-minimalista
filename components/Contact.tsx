@@ -52,7 +52,7 @@ const Contact: React.FC = () => {
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-10 transition-colors duration-300">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Campo oculto requerido por Web3Forms */}
-            <input type="hidden" name="access_key" value="TU_ACCESS_KEY_AQUI" />
+            <input type="hidden" name="access_key" value="e8628e6d-18a4-4125-af39-bd015bcf2c99" />
             
             <div className="grid md:grid-cols-2 gap-6">
               {/* Nombre */}
