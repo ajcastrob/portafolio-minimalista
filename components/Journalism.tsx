@@ -1,15 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ExternalLink, Newspaper } from "lucide-react";
+import { Article } from "../types";
 
-interface Article {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  publication: string;
-  date: string;
-  link: string;
-}
+
 
 const articlesData: Article[] = [
   {
@@ -58,9 +51,8 @@ const Journalism: React.FC = () => {
     >
       <div className="max-w-6xl mx-auto">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <Newspaper className="w-8 h-8 text-accent animate-pulse" />
@@ -77,11 +69,10 @@ const Journalism: React.FC = () => {
           {articlesData.map((article, index) => (
             <div
               key={article.id}
-              className={`bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group ${
-                isVisible
+              className={`bg-slate-50 dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col group ${isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
-              }`}
+                }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="relative overflow-hidden h-56">

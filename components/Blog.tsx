@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, ArrowRight, X, ArrowLeft, BookOpen } from 'lucide-react';
 import Constellation from './Constellation';
+import { BlogPost } from '../types';
 
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image?: string;
-  content: React.ReactNode;
-}
+
 
 const blogPosts: BlogPost[] = [
   {
@@ -196,15 +188,15 @@ const Blog: React.FC = () => {
             <article key={post.id} className="group flex flex-col h-full bg-white/5 dark:bg-slate-800/30 backdrop-blur-md rounded-2xl overflow-hidden border border-white/10 dark:border-slate-700/50 hover:border-accent/50 dark:hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/20">
               {post.image && (
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
+                  <img
+                    src={post.image}
+                    alt={post.title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               )}
-              
+
               <div className="p-6 flex flex-col flex-grow">
                 <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-400 dark:text-slate-500 mb-3">
                   <span className="flex items-center">
@@ -219,17 +211,17 @@ const Blog: React.FC = () => {
                     {post.category}
                   </span>
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-white dark:text-white mb-3 group-hover:text-accent transition-colors duration-300 cursor-pointer" onClick={() => openPost(post)}>
                   {post.title}
                 </h3>
-                
+
                 <p className="text-slate-300 dark:text-slate-400 mb-6 flex-grow leading-relaxed text-sm">
                   {post.excerpt}
                 </p>
-                
+
                 <div className="pt-4 border-t border-slate-200 dark:border-slate-700/50 mt-auto">
-                  <button 
+                  <button
                     onClick={() => openPost(post)}
                     className="inline-flex items-center text-sm font-semibold text-accent hover:text-accentHover transition-colors focus:outline-none"
                   >
@@ -247,8 +239,8 @@ const Blog: React.FC = () => {
         <div className="fixed inset-0 z-[60] overflow-y-auto bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm animate-fadeIn">
           <div className="min-h-screen px-4 py-12 md:py-20 flex justify-center">
             <div className="w-full max-w-3xl bg-white dark:bg-slate-900 shadow-2xl rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 relative">
-              
-              <button 
+
+              <button
                 onClick={closePost}
                 className="absolute top-4 right-4 p-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-900/20 dark:hover:text-red-400 transition-colors z-10"
               >
@@ -257,9 +249,9 @@ const Blog: React.FC = () => {
 
               {selectedPost.image && (
                 <div className="h-64 md:h-80 w-full relative">
-                  <img 
-                    src={selectedPost.image} 
-                    alt={selectedPost.title} 
+                  <img
+                    src={selectedPost.image}
+                    alt={selectedPost.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 to-transparent"></div>
@@ -290,7 +282,7 @@ const Blog: React.FC = () => {
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-700">
-                  <button 
+                  <button
                     onClick={closePost}
                     className="inline-flex items-center text-slate-600 dark:text-slate-400 hover:text-accent dark:hover:text-accent font-medium transition-colors"
                   >

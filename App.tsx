@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Projects from './components/Projects';
-import Journalism from './components/Journalism';
-import Blog from './components/Blog';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
+
+// Lazy load heavy components
+const Projects = lazy(() => import('./components/Projects'));
+const Journalism = lazy(() => import('./components/Journalism'));
+const Blog = lazy(() => import('./components/Blog'));
+
+// Loading component
+const Loading = () => (
+  <div className="flex items-center justify-center py-24">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
+  </div>
+);
 
 const App: React.FC = () => {
   const [isDark, setIsDark] = React.useState(() => {
@@ -36,11 +47,20 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col transition-colors duration-300">
       <Navbar isDark={isDark} toggleTheme={toggleTheme} />
       <main className="flex-grow">
-        <Hero />
-        <About />
-        <Projects />
-        <Journalism />
-        <Blog />
+        <ErrorBoundary>
+          <Hero />
+          <About />
+          <Suspense fallback={<Loading />}>
+            <Projects />
+          </Suspense>
+          <Suspense fallback={<Loading />}>
+            <Journalism />
+          </Suspense>
+          <Suspense fallback={<Loading />}>
+            <Blog />
+          </Suspense>
+          <Contact />
+        </ErrorBoundary>
       </main>
       <Footer />
     </div>

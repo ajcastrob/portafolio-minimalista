@@ -1,14 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github, Code } from 'lucide-react';
+import { Project } from '../types';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  link: string;
-}
+
 
 const projectsData: Project[] = [
   {
@@ -114,7 +108,7 @@ const Projects: React.FC = () => {
                   {/* Glow effect */}
                   <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 opacity-0 group-hover/btn:opacity-20 blur-lg transition-opacity duration-300"></span>
                   <span className="absolute inset-0 rounded-xl border-2 border-slate-400/30 opacity-0 group-hover/btn:opacity-100 animate-button-glow"></span>
-                  
+
                   <span className="relative z-10 flex items-center">
                     <Github className="mr-2 h-4 w-4" />
                     Ver Repositorio

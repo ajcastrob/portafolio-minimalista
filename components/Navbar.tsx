@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import { NavbarProps } from '../types';
 
-interface NavbarProps {
-  isDark: boolean;
-  toggleTheme: () => void;
-}
+
 
 const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,25 +33,24 @@ const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo / Name - Hide on scroll */}
-          <div className={`flex-shrink-0 flex items-center transition-all duration-500 ${
-            showProfile ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
-          }`}>
+          <div className={`flex-shrink-0 flex items-center transition-all duration-500 ${showProfile ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
+            }`}>
             <a href="#inicio" className="flex items-center gap-3 group">
               <div className="relative">
                 <img
                   src={`${import.meta.env.BASE_URL}profile.jpg`}
                   alt="José Castro"
-                  className="w-10 h-10 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700 group-hover:border-accent transition-all duration-300 group-hover:scale-110"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-slate-200 dark:border-slate-700 shadow-md group-hover:shadow-xl group-hover:border-accent transition-all duration-300 group-hover:scale-105"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                   }}
                 />
-                <div className="absolute inset-0 rounded-full bg-accent/20 scale-0 group-hover:scale-110 transition-transform duration-300"></div>
+                <div className="absolute inset-0 rounded-full bg-accent/10 scale-0 group-hover:scale-110 transition-transform duration-300"></div>
               </div>
-              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-accent transition-all duration-300 relative">
+              <span className="text-xl font-semibold tracking-wide text-slate-900 dark:text-white group-hover:text-accent transition-all duration-300 relative">
                 José Castro
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 opacity-50"></span>
               </span>
             </a>
           </div>
